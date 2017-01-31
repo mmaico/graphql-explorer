@@ -23,6 +23,10 @@ module.exports = {
     publicPath: process.env.WEBPACK_HOST,
     filename: outputFilename
   },
+  devServer: {
+    inline:true,
+    port: 8787
+  },
 
   module: {
     loaders: [
@@ -45,7 +49,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: '../index.ejs',
-      graphql: { url: process.env["GRAPHQL_ENDPOINT"]  || "https://graphql.buildkite.com/v1" }
+      graphql: { url: process.env["GRAPHQL_ENDPOINT"]  || "http://localhost:8181/api/admin-graphql" }
     }),
     new webpack.ProvidePlugin({
       'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
