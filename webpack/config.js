@@ -49,7 +49,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: '../index.ejs',
-      graphql: { url: process.env["GRAPHQL_ENDPOINT"]  || "http://localhost:8181/api/admin-graphql" }
+      graphql: { url: process.env["GRAPHQL_ENDPOINT"]  || "http://10.138.145.216:8089/api/saca-graphql" }
     }),
     new webpack.ProvidePlugin({
       'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
