@@ -8,6 +8,7 @@ require("./css/login.css");
 class Login extends React.Component {
   state = { token: "" };
 
+
   render() {
     return (
       <div className="Login__Container">
@@ -17,14 +18,13 @@ class Login extends React.Component {
               <img src={require('./images/logo.svg')} />
               <img src={require('./images/graphql.svg')} />
             </div>
-            <h1>Buildkite GraphQL Explorer <span className="beta">Beta</span></h1>
+            <h1>Easytalk GraphQL Explorer <span className="beta">Beta</span></h1>
           </div>
           <div className="Login__Body">
-            <p className="Login__Intro">Enter a Buildkite API Token to get started</p>
-            <p className="Login__Extra">The API token needs to have the <code>graphql</code> scope and can be created on your <a href="https://buildkite.com/user/api-access-tokens" target="_blank">API Access Tokens</a> page.</p>
-            <form onSubmit={this._onSubmit.bind(this)}>
-              <input type="text" onChange={this._onInputChange.bind(this)} required="true" value={this.state.token} autoFocus="true" />
-              <button className="Login__Button">Login</button>
+            <p className="Login__Intro">Entre no EasyTalk API usando o token de autenticação</p>
+            <p className="Login__Extra">O token para acesso a api está no LocalStorage com a chave <code>id_token</code></p>
+            <form onSubmit={this._onSubmit.bind(this)}>              
+              <button className="Login__Button">Entrar</button>
             </form>
           </div>
         </div>
@@ -34,13 +34,10 @@ class Login extends React.Component {
     );
   }
 
-  _onInputChange(e) {
-    this.setState({ token: e.target.value });
-  }
-
   _onSubmit(e) {
     e.preventDefault();
-
+    var token = localStorage.getItem("id_token");    
+    this.state.token = token;
     this.props.onLogin(this.state.token);
   }
 }
